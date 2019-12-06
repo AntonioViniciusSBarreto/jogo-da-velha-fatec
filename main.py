@@ -1,4 +1,5 @@
-tabuleiro = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+import sys, pygame
+
 
 #sei laaaaaaaaaaaaaaaaaa
 # Eh pegadinha garai kkkj
@@ -66,10 +67,36 @@ def detectar_resultado (tabuleiro):
 		return True
 	return False
 
+tabuleiro = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+
 # Esta etapa determina as jogadas que serão feitas ao longo do jogo atual.
 fim_de_jogo = False
+
+
+pygame.init()
+
+black = (255,255,255)
+
+X = 640
+Y = 480
+
+display_surface = pygame.display.set_mode((X,Y))
+pygame.display.set_caption('Imagem')
+
+imagem = pygame.image.load(r'ico-x.png')
+
+while True:
+    display_surface.fill(black)
+    display_surface.blit(imagem,(0,0))
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+             quit()
+    pygame.display.update()
+
 while fim_de_jogo != True:
 	jogada = entrada_do_usuario()
 	fazer_jogada(jogada, tabuleiro)
 	fim_de_jogo = detectar_resultado (tabuleiro)
 	mostrar_gui(tabuleiro)
+
